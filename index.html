@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Anugraha's portfolio — an aspiring data scientist interested in analytics, machine learning, and data visualization.">
+  <title>Anugraha — Aspiring Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --bg-soft: #11182b;
+      --surface: #151d32;
+      --surface-raised: #1a2340;
+      --text: #f5f6fb;
+      --muted: #a4aec5;
+      --line: rgba(179, 190, 218, .14);
+      --purple: #a78bfa;
+      --purple-strong: #8b5cf6;
+      --cyan: #75d9e8;
+      --shadow: 0 24px 70px rgba(2, 6, 23, .32);
+      --header-bg: rgba(11, 16, 32, .78);
+      --navy: #10172a;
+    }
+
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg: #f7f8fc;
+      --bg-soft: #eef0f8;
+      --surface: #fff;
+      --surface-raised: #f7f5ff;
+      --text: #15172a;
+      --muted: #626b81;
+      --line: rgba(28, 37, 67, .12);
+      --purple: #7350d7;
+      --purple-strong: #6941cb;
+      --cyan: #168a9d;
+      --shadow: 0 24px 70px rgba(37, 33, 72, .10);
+      --header-bg: rgba(247, 248, 252, .82);
+      --navy: #f0effa;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      transition: background .25s ease, color .25s ease;
+    }
+    body, button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img, svg { display: block; }
+    .container { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .section { padding: 104px 0; }
+    .section-kicker {
+      display: inline-flex; align-items: center; gap: 9px;
+      color: var(--purple); font-size: .78rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+    }
+    .section-kicker::before { width: 22px; height: 1px; background: currentColor; content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: "Manrope", sans-serif; line-height: 1.16; }
+    h2 { margin: 14px 0 14px; font-size: clamp(2rem, 4vw, 2.85rem); letter-spacing: -.045em; }
+    .section-intro { max-width: 600px; margin-bottom: 42px; color: var(--muted); }
+
+    .site-header {
+      position: fixed; z-index: 20; inset: 0 0 auto; height: 76px;
+      border-bottom: 1px solid transparent; background: var(--header-bg);
+      backdrop-filter: blur(18px); transition: border-color .2s ease, background .2s ease;
+    }
+    .site-header.scrolled { border-color: var(--line); }
+    .nav-wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: "Manrope", sans-serif; font-size: 1.08rem; font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark {
+      display: grid; width: 34px; height: 34px; place-items: center; border-radius: 11px;
+      background: linear-gradient(135deg, var(--purple-strong), #6744c4); color: white; font-size: .88rem;
+      box-shadow: 0 7px 20px rgba(139, 92, 246, .28);
+    }
+    .nav-links { display: flex; align-items: center; gap: 31px; margin: 0; padding: 0; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 600; transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .theme-toggle, .menu-toggle {
+      display: grid; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line);
+      border-radius: 12px; background: var(--surface); color: var(--text); cursor: pointer;
+    }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .menu-toggle { display: none; }
+    .btn {
+      display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px;
+      padding: 0 20px; border: 1px solid transparent; border-radius: 12px;
+      font-size: .9rem; font-weight: 700; transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--purple-strong), #7450d8); color: white; box-shadow: 0 10px 24px rgba(139, 92, 246, .2); }
+    .btn-secondary { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .btn svg { width: 16px; height: 16px; }
+
+    .hero {
+      position: relative; display: flex; min-height: 730px; align-items: center; overflow: hidden;
+      padding: 128px 0 92px;
+    }
+    .hero::before, .hero::after {
+      position: absolute; z-index: -1; width: 440px; height: 440px; border-radius: 50%; content: "";
+      filter: blur(100px); opacity: .15; pointer-events: none;
+    }
+    .hero::before { top: 50px; left: -230px; background: #7247e8; }
+    .hero::after { right: -230px; bottom: -180px; background: #2e9fb7; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 64px; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 25px; color: var(--muted); font-size: .82rem; font-weight: 600; }
+    .availability-dot { width: 8px; height: 8px; border-radius: 50%; background: #69d6a5; box-shadow: 0 0 0 5px rgba(105, 214, 165, .11); }
+    .hero h1 { margin: 0 0 17px; font-size: clamp(2.8rem, 6vw, 5rem); letter-spacing: -.065em; }
+    .hero h1 span { display: block; color: var(--purple); }
+    .hero-title { margin-bottom: 19px; font-size: clamp(1.2rem, 2.6vw, 1.6rem); font-weight: 600; }
+    .hero-copy { max-width: 525px; margin-bottom: 30px; color: var(--muted); font-size: 1.02rem; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 13px; }
+    .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 34px; color: var(--muted); font-size: .83rem; }
+    .hero-note::before { width: 34px; height: 1px; background: var(--line); content: ""; }
+    .visual-wrap { position: relative; max-width: 465px; margin-inline: auto; }
+    .portrait-card {
+      position: relative; display: grid; min-height: 450px; place-items: center; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 34px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(147, 110, 255, .26), transparent 49%), linear-gradient(145deg, var(--surface-raised), var(--surface));
+      box-shadow: var(--shadow);
+    }
+    .portrait-card::before, .portrait-card::after {
+      position: absolute; border: 1px solid rgba(167, 139, 250, .19); border-radius: 50%; content: "";
+    }
+    .portrait-card::before { width: 320px; height: 320px; }
+    .portrait-card::after { width: 390px; height: 390px; }
+    .portrait-art { position: relative; z-index: 1; width: 210px; height: 270px; }
+    .portrait-art svg { width: 100%; height: 100%; }
+    .floating-chip {
+      position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px;
+      padding: 12px 15px; border: 1px solid var(--line); border-radius: 14px;
+      background: var(--surface); box-shadow: var(--shadow); font-size: .78rem; font-weight: 700;
+    }
+    .floating-chip svg { width: 19px; height: 19px; color: var(--cyan); }
+    .chip-top { top: 56px; left: -28px; }
+    .chip-bottom { right: -23px; bottom: 60px; }
+    .portrait-caption { position: absolute; right: 24px; bottom: 19px; color: var(--muted); font-size: .72rem; }
+
+    .about-section { background: var(--bg-soft); }
+    .about-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: start; gap: 80px; }
+    .about-copy p { color: var(--muted); }
+    .about-callout { margin-top: 26px; padding: 19px 21px; border-left: 2px solid var(--purple); border-radius: 0 12px 12px 0; background: var(--surface); color: var(--text); font-weight: 600; }
+    .about-points { display: grid; gap: 13px; }
+    .about-point { display: flex; align-items: flex-start; gap: 15px; padding: 19px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .point-icon { display: grid; flex: 0 0 40px; width: 40px; height: 40px; place-items: center; border-radius: 12px; background: rgba(139, 92, 246, .13); color: var(--purple); }
+    .point-icon svg { width: 19px; height: 19px; }
+    .about-point h3 { margin: 1px 0 5px; font-size: .98rem; letter-spacing: -.02em; }
+    .about-point p { margin: 0; color: var(--muted); font-size: .85rem; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .skill-card { min-height: 124px; padding: 18px; border: 1px solid var(--line); border-radius: 17px; background: var(--surface); transition: transform .2s ease, border-color .2s ease; }
+    .skill-card:hover { transform: translateY(-4px); border-color: rgba(167, 139, 250, .5); }
+    .skill-icon { display: grid; width: 37px; height: 37px; margin-bottom: 14px; place-items: center; border-radius: 11px; background: rgba(139, 92, 246, .12); color: var(--purple); font-family: "Manrope", sans-serif; font-size: .76rem; font-weight: 800; }
+    .skill-card:nth-child(3n+2) .skill-icon { background: rgba(117, 217, 232, .11); color: var(--cyan); }
+    .skill-card h3 { margin: 0; font-size: .9rem; letter-spacing: -.02em; }
+
+    .projects-section { background: var(--bg-soft); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; gap: 20px; }
+    .project-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); transition: transform .25s ease, box-shadow .25s ease; }
+    .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+    .project-art { position: relative; display: flex; height: 190px; align-items: center; justify-content: center; overflow: hidden; background: linear-gradient(145deg, #211941, #151d32); }
+    .project-card:nth-child(2) .project-art { background: linear-gradient(145deg, #12313a, #151d32); }
+    .project-card:nth-child(3) .project-art { background: linear-gradient(145deg, #32233e, #151d32); }
+    .project-art::before { position: absolute; width: 220px; height: 220px; border: 1px solid rgba(255,255,255,.09); border-radius: 50%; content: ""; }
+    .dashboard { position: relative; z-index: 1; display: grid; width: 77%; height: 120px; grid-template-columns: 1.2fr .8fr; gap: 9px; padding: 12px; border: 1px solid rgba(255,255,255,.15); border-radius: 13px; background: rgba(9, 14, 29, .72); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
+    .dash-panel { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 8px; background: rgba(255,255,255,.035); }
+    .bars { display: flex; align-items: end; justify-content: space-evenly; gap: 7px; padding: 13px 10px 11px; }
+    .bars i { width: 12%; border-radius: 4px 4px 1px 1px; background: linear-gradient(0deg, #7655df, #bba8ff); }
+    .bars i:nth-child(1) { height: 42%; }.bars i:nth-child(2) { height: 67%; }.bars i:nth-child(3) { height: 52%; }.bars i:nth-child(4) { height: 82%; }.bars i:nth-child(5) { height: 61%; }
+    .chart-ring { display: grid; place-items: center; }
+    .chart-ring::before { width: 56px; height: 56px; border: 9px solid rgba(117,217,232,.25); border-top-color: #75d9e8; border-right-color: #a78bfa; border-radius: 50%; content: ""; }
+    .line-chart { position: relative; width: 80%; height: 86px; border-bottom: 1px solid rgba(255,255,255,.16); background: repeating-linear-gradient(to bottom, transparent 0 20px, rgba(255,255,255,.07) 21px 22px); }
+    .line-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .data-dots { position: absolute; top: 24px; left: 50%; display: flex; gap: 9px; }
+    .data-dots span { width: 9px; height: 9px; border-radius: 50%; background: #75d9e8; box-shadow: 0 0 12px #75d9e8; }
+    .data-dots span:nth-child(2) { margin-top: 28px; background: #a78bfa; box-shadow: 0 0 12px #a78bfa; }
+    .data-dots span:nth-child(3) { margin-top: -6px; background: #f1a2bd; box-shadow: 0 0 12px #f1a2bd; }
+    .project-content { display: flex; flex: 1; flex-direction: column; padding: 22px; }
+    .project-type { margin-bottom: 10px; color: var(--purple); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .project-content h3 { min-height: 48px; margin: 0 0 10px; font-size: 1.12rem; letter-spacing: -.03em; }
+    .project-content p { min-height: 68px; margin-bottom: 18px; color: var(--muted); font-size: .85rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 21px; }
+    .tag { padding: 5px 9px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); font-size: .7rem; font-weight: 600; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; margin-top: auto; color: var(--text); font-size: .83rem; font-weight: 700; }
+    .project-link:hover { color: var(--purple); }
+    .project-link svg { width: 16px; height: 16px; }
+    .project-disclaimer { margin: 22px 0 0; color: var(--muted); font-size: .78rem; }
+
+    .education-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .education-card { position: relative; display: flex; gap: 17px; padding: 25px; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+    .education-card::after { position: absolute; top: -35px; right: -34px; width: 100px; height: 100px; border: 1px solid var(--line); border-radius: 50%; content: ""; }
+    .edu-icon { display: grid; flex: 0 0 47px; width: 47px; height: 47px; place-items: center; border-radius: 14px; background: rgba(139, 92, 246, .13); color: var(--purple); }
+    .edu-icon svg { width: 22px; height: 22px; }
+    .education-card h3 { margin: 3px 0 7px; font-size: 1.04rem; }
+    .education-card p { margin: 0; color: var(--muted); font-size: .85rem; }
+
+    .contact-section { padding-top: 28px; }
+    .contact-panel { position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; padding: 52px; overflow: hidden; border: 1px solid var(--line); border-radius: 25px; background: linear-gradient(115deg, var(--surface), var(--surface-raised)); }
+    .contact-panel::after { position: absolute; top: -125px; right: 150px; width: 290px; height: 290px; border: 1px solid rgba(167,139,250,.16); border-radius: 50%; content: ""; pointer-events: none; }
+    .contact-panel h2 { margin-top: 12px; }
+    .contact-panel p { max-width: 490px; margin: 0; color: var(--muted); }
+    .contact-actions { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 11px; }
+    .contact-actions .btn { min-width: 190px; }
+    .contact-details { display: flex; flex-wrap: wrap; gap: 21px; margin-top: 26px; }
+    .contact-details a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: .85rem; transition: color .2s ease; }
+    .contact-details a:hover { color: var(--text); }
+    .contact-details svg { width: 17px; height: 17px; color: var(--purple); }
+    .site-footer { padding: 27px 0; border-top: 1px solid var(--line); }
+    .footer-wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .8rem; }
+    .footer-wrap p { margin: 0; }
+    .footer-links { display: flex; gap: 18px; }
+    .footer-links a:hover { color: var(--text); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { gap: 19px; }
+      .hero-grid { gap: 35px; }
+      .portrait-card { min-height: 400px; }
+      .skills-grid { grid-template-columns: repeat(4, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card:last-child { grid-column: 1 / -1; }
+      .project-card:last-child .project-art { height: 210px; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 36px, 540px); }
+      .section { padding: 77px 0; }
+      .site-header { height: 68px; }
+      .menu-toggle { display: grid; }
+      .nav-links {
+        position: absolute; top: 67px; right: 18px; left: 18px; display: none; flex-direction: column;
+        align-items: stretch; gap: 0; padding: 9px; border: 1px solid var(--line); border-radius: 16px;
+        background: var(--surface); box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 12px 13px; border-radius: 9px; }
+      .nav-links a:hover { background: var(--surface-raised); }
+      .nav-actions { gap: 8px; }
+      .hero { min-height: auto; padding: 126px 0 72px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 47px; }
+      .hero h1 { font-size: clamp(2.9rem, 12vw, 4.25rem); }
+      .hero-copy { font-size: .96rem; }
+      .visual-wrap { width: min(100%, 430px); }
+      .portrait-card { min-height: 365px; }
+      .portrait-art { width: 176px; height: 230px; }
+      .chip-top { left: -7px; }.chip-bottom { right: -7px; }
+      .about-grid { grid-template-columns: 1fr; gap: 34px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 11px; }
+      .skill-card { min-height: 112px; padding: 15px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:last-child { grid-column: auto; }
+      .project-art, .project-card:last-child .project-art { height: 190px; }
+      .project-content h3, .project-content p { min-height: 0; }
+      .education-grid { grid-template-columns: 1fr; }
+      .contact-section { padding-top: 0; }
+      .contact-panel { grid-template-columns: 1fr; gap: 26px; padding: 31px 24px; }
+      .contact-actions { flex-direction: row; flex-wrap: wrap; }
+      .contact-actions .btn { min-width: 0; }
+      .footer-wrap { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 390px) {
+      .container { width: calc(100% - 28px); }
+      .brand { font-size: .97rem; }
+      .hero-buttons .btn { width: 100%; }
+      .floating-chip { padding: 10px 11px; font-size: .72rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <nav class="container nav-wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Anugraha home">
+        <span class="brand-mark">A</span><span>Anugraha<span style="color:var(--purple)">.</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+          <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy-wrap reveal">
+          <div class="availability"><span class="availability-dot"></span> Exploring opportunities to learn and grow</div>
+          <h1>Hi, I'm <span>Anugraha</span></h1>
+          <p class="hero-title">Aspiring Data Scientist</p>
+          <p class="hero-copy">I’m passionate about turning data into clear insights. I enjoy exploring analytics, learning machine learning, and using data to better understand real-world problems.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#projects">View My Projects
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+            </a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+          <div class="hero-note">Curious by nature. Guided by data.</div>
+        </div>
+        <div class="visual-wrap reveal" aria-label="Illustrated profile and data visualizations">
+          <div class="portrait-card">
+            <div class="portrait-art">
+              <svg viewBox="0 0 210 270" role="img" aria-label="Abstract profile illustration">
+                <defs>
+                  <linearGradient id="bodyGradient" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#aa91ff"/><stop offset="1" stop-color="#6747c7"/></linearGradient>
+                  <linearGradient id="faceGradient" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f6c6b8"/><stop offset="1" stop-color="#df9c98"/></linearGradient>
+                </defs>
+                <ellipse cx="104" cy="248" rx="74" ry="12" fill="#060a16" opacity=".3"/>
+                <path d="M33 251c5-48 24-77 72-77s67 29 72 77H33Z" fill="url(#bodyGradient)"/>
+                <path d="M88 166h34v37c-8 12-26 12-34 0v-37Z" fill="url(#faceGradient)"/>
+                <path d="M64 96c0-42 17-64 44-64s44 22 44 64v27c0 31-20 54-44 54s-44-23-44-54V96Z" fill="url(#faceGradient)"/>
+                <path d="M61 111c-9-53 11-84 47-84 30 0 51 18 49 69-9-5-16-14-20-26-16 17-42 25-76 25v16h-1Z" fill="#28203c"/>
+                <path d="M78 112c5-3 10-3 15 0m24 0c5-3 10-3 15 0" fill="none" stroke="#573e4a" stroke-width="3" stroke-linecap="round"/>
+                <path d="M96 143c8 6 16 6 24 0" fill="none" stroke="#a75462" stroke-width="3" stroke-linecap="round"/>
+                <path d="M105 122v9" fill="none" stroke="#ce827d" stroke-width="2" stroke-linecap="round"/>
+                <path d="M69 209c14 9 25 14 36 14s23-5 37-14" fill="none" stroke="#d7ccff" stroke-opacity=".65" stroke-width="2"/>
+                <circle cx="66" cy="130" r="5" fill="#f3bdac"/><circle cx="150" cy="130" r="5" fill="#f3bdac"/>
+              </svg>
+            </div>
+            <span class="portrait-caption">A little curiosity goes a long way.</span>
+          </div>
+          <div class="floating-chip chip-top">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5m0 14h17M8 15l4-5 3 3 5-7"></path></svg>
+            Data &amp; insights
+          </div>
+          <div class="floating-chip chip-bottom">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg>
+            Always learning
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <span class="section-kicker">About me</span>
+          <h2>Making sense of data, one question at a time.</h2>
+          <p>I have completed my Higher Secondary Education and a Diploma in Data Science. I’m at the beginning of my journey and building a strong foundation through practice, curiosity, and continued learning.</p>
+          <p>I’m especially interested in data analytics, machine learning, and data visualization—and in how thoughtful analysis can help solve real-world problems.</p>
+          <div class="about-callout">My goal: keep learning, ask better questions, and communicate insights clearly.</div>
+        </div>
+        <div class="about-points reveal">
+          <article class="about-point">
+            <span class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg></span>
+            <div><h3>Learning with purpose</h3><p>Building my skills through a Diploma in Data Science and hands-on practice.</p></div>
+          </article>
+          <article class="about-point">
+            <span class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M18 17V9m-5 8V5m-5 12v-5"></path></svg></span>
+            <div><h3>Finding the story in data</h3><p>Interested in analysis and visualization that make information easier to understand.</p></div>
+          </article>
+          <article class="about-point">
+            <span class="point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3m0 12v3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12M3 12h3m12 0h3m-2.36-6.36-2.12 2.12m-8.48 8.48-2.12 2.12"></path><circle cx="12" cy="12" r="4"></circle></svg></span>
+            <div><h3>Curious problem-solver</h3><p>Motivated to explore new technologies and approach problems thoughtfully.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-kicker">Technical skills</span>
+          <h2>Tools I’m learning and working with.</h2>
+          <p class="section-intro">A growing toolkit for exploring, analyzing, and presenting data.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card reveal"><span class="skill-icon">Py</span><h3>Python</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">SQL</span><h3>SQL</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Ex</span><h3>Excel</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">BI</span><h3>Power BI</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Pd</span><h3>Pandas</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Np</span><h3>NumPy</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Mt</span><h3>Matplotlib</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Sb</span><h3>Seaborn</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">ML</span><h3>Machine Learning</h3></article>
+          <article class="skill-card reveal"><span class="skill-icon">Dv</span><h3>Data Visualization</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects-section" id="projects">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-kicker">Selected projects</span>
+          <h2>Practice through projects.</h2>
+          <p class="section-intro">A selection of data projects exploring analytics, visualization, and machine learning.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-art" role="img" aria-label="Illustration of an employee analytics dashboard">
+              <div class="dashboard"><div class="dash-panel bars"><i></i><i></i><i></i><i></i><i></i></div><div class="dash-panel chart-ring"></div></div>
+            </div>
+            <div class="project-content">
+              <span class="project-type">Dashboard · Power BI</span>
+              <h3>HR Analytics and Employee Attrition Dashboard</h3>
+              <p>An HR analytics dashboard concept for exploring employee data and attrition patterns through interactive visualizations.</p>
+              <div class="tag-list"><span class="tag">Power BI</span><span class="tag">Data Visualization</span><span class="tag">HR Analytics</span></div>
+              <a class="project-link" href="https://github.com/anugrahavarghese92-ux" target="_blank" rel="noopener noreferrer" aria-label="View HR Analytics project on Anugraha's GitHub profile">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"></path></svg></a>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-art" role="img" aria-label="Illustration of a customer churn trend chart">
+              <div class="line-chart"><svg viewBox="0 0 240 86" preserveAspectRatio="none" aria-hidden="true"><path d="M0 66 C28 61 34 31 63 42 S97 70 122 48 S154 34 174 43 S207 12 240 20" fill="none" stroke="#75d9e8" stroke-width="3"/><path d="M0 66 C28 61 34 31 63 42 S97 70 122 48 S154 34 174 43 S207 12 240 20 L240 86H0Z" fill="url(#chartFill)" opacity=".18"/><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#75d9e8"/><stop offset="1" stop-color="#75d9e8" stop-opacity="0"/></linearGradient></defs></svg></div>
+            </div>
+            <div class="project-content">
+              <span class="project-type">Data analysis · Python</span>
+              <h3>Customer Churn Analysis</h3>
+              <p>A data analysis project focused on exploring customer churn data and identifying patterns that may be useful for understanding retention.</p>
+              <div class="tag-list"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Seaborn</span></div>
+              <a class="project-link" href="https://github.com/anugrahavarghese92-ux" target="_blank" rel="noopener noreferrer" aria-label="View Customer Churn project on Anugraha's GitHub profile">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"></path></svg></a>
+            </div>
+          </article>
+          <article class="project-card reveal">
+            <div class="project-art" role="img" aria-label="Illustration of a text classification visualization">
+              <div class="data-dots"><span></span><span></span><span></span></div>
+            </div>
+            <div class="project-content">
+              <span class="project-type">Machine learning · NLP</span>
+              <h3>Fake News Detection</h3>
+              <p>A text classification project exploring how machine learning techniques can be applied to news content.</p>
+              <div class="tag-list"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">NLP</span></div>
+              <a class="project-link" href="https://github.com/anugrahavarghese92-ux" target="_blank" rel="noopener noreferrer" aria-label="View Fake News Detection project on Anugraha's GitHub profile">View Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"></path></svg></a>
+            </div>
+          </article>
+        </div>
+        <p class="project-disclaimer">Project links open the GitHub profile provided. Individual repository URLs can be added when available.</p>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-kicker">Education</span>
+          <h2>My learning foundation.</h2>
+          <p class="section-intro">The education that started my journey into data science.</p>
+        </div>
+        <div class="education-grid">
+          <article class="education-card reveal">
+            <span class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 10 10-5 10 5-10 5-10-5Z"></path><path d="M6 12v5c3.5 3 8.5 3 12 0v-5m4-2v6"></path></svg></span>
+            <div><h3>Higher Secondary Education</h3><p>Completed</p></div>
+          </article>
+          <article class="education-card reveal">
+            <span class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path><path d="M8 7h8m-8 4h6"></path></svg></span>
+            <div><h3>Diploma in Data Science</h3><p>Completed</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="section-kicker">Get in touch</span>
+            <h2>Let’s connect.</h2>
+            <p>I’m always glad to connect with people who are curious about data, analytics, and learning together.</p>
+            <div class="contact-details">
+              <a href="mailto:anugrahavarghese92@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>anugrahavarghese92@gmail.com</a>
+              <a href="https://github.com/anugrahavarghese92-ux" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.68-3.76-1.32-3.76-1.32-.5-1.3-1.24-1.65-1.24-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.71 2.61 1.22 3.25.93.1-.72.39-1.22.7-1.5-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.21 1.16-2.99-.12-.28-.5-1.42.11-2.95 0 0 .95-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.1-1.44 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.16 1.77 1.16 2.99 0 4.29-2.62 5.24-5.11 5.51.4.35.75 1.03.75 2.08v3.1c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"></path></svg>github.com/anugrahavarghese92-ux</a>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:anugrahavarghese92@gmail.com">Send an email
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"></path></svg>
+            </a>
+            <a class="btn btn-secondary" href="https://github.com/anugrahavarghese92-ux" target="_blank" rel="noopener noreferrer">Visit GitHub profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© <span id="year"></span> Anugraha. Made with curiosity and care.</p>
+      <div class="footer-links"><a href="#home">Back to top ↑</a><a href="mailto:anugrahavarghese92@gmail.com">Email</a></div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var header = document.getElementById("site-header");
+      var menuButton = document.getElementById("menu-toggle");
+      var nav = document.getElementById("nav-links");
+      var themeButton = document.getElementById("theme-toggle");
+      var themeIcon = document.getElementById("theme-icon");
+      var savedTheme = null;
+
+      try {
+        savedTheme = localStorage.getItem("anugraha-theme");
+      } catch (error) {
+        savedTheme = null;
+      }
+      if (savedTheme === "light" || savedTheme === "dark") {
+        root.setAttribute("data-theme", savedTheme);
+      }
+
+      function updateThemeControl() {
+        var light = root.getAttribute("data-theme") === "light";
+        var label = light ? "Switch to dark mode" : "Switch to light mode";
+        themeButton.setAttribute("aria-label", label);
+        themeButton.setAttribute("title", label);
+        themeIcon.innerHTML = light
+          ? '<path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>'
+          : '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>';
+      }
+      updateThemeControl();
+
+      themeButton.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", next);
+        updateThemeControl();
+        try {
+          localStorage.setItem("anugraha-theme", next);
+        } catch (error) {
+          // Theme switching remains available for this visit if storage is disabled.
+        }
+      });
+
+      menuButton.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      });
+      nav.addEventListener("click", function (event) {
+        if (event.target.closest("a")) {
+          nav.classList.remove("open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+        }
+      });
+
+      function handleScroll() {
+        header.classList.toggle("scrolled", window.scrollY > 8);
+      }
+      handleScroll();
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      var revealItems = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries, currentObserver) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach(function (item) { observer.observe(item); });
+      } else {
+        revealItems.forEach(function (item) { item.classList.add("visible"); });
+      }
+
+      var sectionLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      if ("IntersectionObserver" in window) {
+        var sectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              sectionLinks.forEach(function (link) {
+                link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+              });
+            }
+          });
+        }, { rootMargin: "-35% 0px -55% 0px" });
+        document.querySelectorAll("main section[id]").forEach(function (section) { sectionObserver.observe(section); });
+      }
+      document.getElementById("year").textContent = new Date().getFullYear();
+    }());
+  </script>
+</body>
+</html>
