@@ -132,13 +132,11 @@
       background: radial-gradient(ellipse at 50% 30%, rgba(147, 110, 255, .26), transparent 49%), linear-gradient(145deg, var(--surface-raised), var(--surface));
       box-shadow: var(--shadow);
     }
-    .portrait-card::before, .portrait-card::after {
-      position: absolute; border: 1px solid rgba(167, 139, 250, .19); border-radius: 50%; content: "";
+    .portrait-card::after {
+      position: absolute; z-index: 1; inset: 0; border-radius: inherit;
+      background: linear-gradient(0deg, rgba(11, 16, 32, .55), transparent 34%); content: ""; pointer-events: none;
     }
-    .portrait-card::before { width: 320px; height: 320px; }
-    .portrait-card::after { width: 390px; height: 390px; }
-    .portrait-art { position: relative; z-index: 1; width: 210px; height: 270px; }
-    .portrait-art svg { width: 100%; height: 100%; }
+    .portrait-art { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; object-position: center 27%; }
     .floating-chip {
       position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px;
       padding: 12px 15px; border: 1px solid var(--line); border-radius: 14px;
@@ -147,7 +145,7 @@
     .floating-chip svg { width: 19px; height: 19px; color: var(--cyan); }
     .chip-top { top: 56px; left: -28px; }
     .chip-bottom { right: -23px; bottom: 60px; }
-    .portrait-caption { position: absolute; right: 24px; bottom: 19px; color: var(--muted); font-size: .72rem; }
+    .portrait-caption { position: absolute; z-index: 2; right: 24px; bottom: 19px; color: white; font-size: .72rem; }
 
     .about-section { background: var(--bg-soft); }
     .about-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: start; gap: 80px; }
@@ -259,7 +257,6 @@
       .hero-copy { font-size: .96rem; }
       .visual-wrap { width: min(100%, 430px); }
       .portrait-card { min-height: 365px; }
-      .portrait-art { width: 176px; height: 230px; }
       .chip-top { left: -7px; }.chip-bottom { right: -7px; }
       .about-grid { grid-template-columns: 1fr; gap: 34px; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 11px; }
@@ -324,26 +321,9 @@
           </div>
           <div class="hero-note">Curious by nature. Guided by data.</div>
         </div>
-        <div class="visual-wrap reveal" aria-label="Illustrated profile and data visualizations">
+        <div class="visual-wrap reveal" aria-label="Portrait photograph of Anugraha with data visualizations">
           <div class="portrait-card">
-            <div class="portrait-art">
-              <svg viewBox="0 0 210 270" role="img" aria-label="Abstract profile illustration">
-                <defs>
-                  <linearGradient id="bodyGradient" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#aa91ff"/><stop offset="1" stop-color="#6747c7"/></linearGradient>
-                  <linearGradient id="faceGradient" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f6c6b8"/><stop offset="1" stop-color="#df9c98"/></linearGradient>
-                </defs>
-                <ellipse cx="104" cy="248" rx="74" ry="12" fill="#060a16" opacity=".3"/>
-                <path d="M33 251c5-48 24-77 72-77s67 29 72 77H33Z" fill="url(#bodyGradient)"/>
-                <path d="M88 166h34v37c-8 12-26 12-34 0v-37Z" fill="url(#faceGradient)"/>
-                <path d="M64 96c0-42 17-64 44-64s44 22 44 64v27c0 31-20 54-44 54s-44-23-44-54V96Z" fill="url(#faceGradient)"/>
-                <path d="M61 111c-9-53 11-84 47-84 30 0 51 18 49 69-9-5-16-14-20-26-16 17-42 25-76 25v16h-1Z" fill="#28203c"/>
-                <path d="M78 112c5-3 10-3 15 0m24 0c5-3 10-3 15 0" fill="none" stroke="#573e4a" stroke-width="3" stroke-linecap="round"/>
-                <path d="M96 143c8 6 16 6 24 0" fill="none" stroke="#a75462" stroke-width="3" stroke-linecap="round"/>
-                <path d="M105 122v9" fill="none" stroke="#ce827d" stroke-width="2" stroke-linecap="round"/>
-                <path d="M69 209c14 9 25 14 36 14s23-5 37-14" fill="none" stroke="#d7ccff" stroke-opacity=".65" stroke-width="2"/>
-                <circle cx="66" cy="130" r="5" fill="#f3bdac"/><circle cx="150" cy="130" r="5" fill="#f3bdac"/>
-              </svg>
-            </div>
+            <img class="portrait-art" src="assets/anu.jpeg" alt="Anugraha smiling outdoors">
             <span class="portrait-caption">A little curiosity goes a long way.</span>
           </div>
           <div class="floating-chip chip-top">
